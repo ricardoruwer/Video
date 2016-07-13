@@ -40,8 +40,8 @@
             var n = link.lastIndexOf('/');
             var video_id = link.substring(n + 1);
         } else { //youtube.com/watch?v=ID
-            var n = link.lastIndexOf('=');
-            var video_id = link.substring(n + 1);
+            var n = link.indexOf('v=');
+            var video_id = link.substring(n + 2);
 
             if (video_id.indexOf('&') > -1) {
                 video_id = video_id.substring(0, video_id.indexOf('&'));
