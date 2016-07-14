@@ -12,6 +12,7 @@
     Video.prototype.init = function ()
     {
         this.addEvents();
+        this.checkIfHasVideo();
     }
 
     Video.prototype.addEvents = function ()
@@ -24,13 +25,23 @@
 
             var link = event.srcElement.value;
 
-            if (link.indexOf('youtu') > -1) {
-                videoYoutube(link, self.youtubeToken);
-            } else if (link.indexOf('facebook') > -1) {
-                videoFacebook(link);
-            } else if (link.indexOf('vimeo') > -1) {
-                videoVimeo(link);
-            }
+            self.checkVideoType(link);
+        }
+    }
+
+    Video.prototype.checkIfHasVideo = function ()
+    {
+        this.checkVideoType(this.el.value);
+    }
+
+    Video.prototype.checkVideoType = function (link)
+    {
+        if (link.indexOf('youtu') > -1) {
+            videoYoutube(link, this.youtubeToken);
+        } else if (link.indexOf('facebook') > -1) {
+            videoFacebook(link);
+        } else if (link.indexOf('vimeo') > -1) {
+            videoVimeo(link);
         }
     }
 
